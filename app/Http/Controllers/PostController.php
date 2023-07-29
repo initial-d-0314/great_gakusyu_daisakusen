@@ -18,4 +18,14 @@ class PostController extends Controller
         return view('posts.index')->with(['posts'=> $post->getPaginatebyLimit(5)]);
         //変数'posts'としてposts.indexに渡す。'posts'にgetを使い、インスタンス化した$postを渡す。
     }
+/*
+* 特定IDのpostを表示する
+* @params Object Post // 引数の$postはid=1のPostインスタンス
+* @return Reposnse post view
+*/
+    public function show(Post $post)
+    {
+        return view('posts.show')->with(['post' => $post]);
+        //'post'はbladeファイルで使う変数。$postの中身ははid=1のPostインスタンス。
+    }
 }
