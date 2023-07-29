@@ -15,6 +15,7 @@ class PostController extends Controller
  */
     public function index(Post $post)//インポートしたPostをインスタンス化して$postとして使用。
     {
-        return $post->get();//$postの中身を戻り値にする。
+        return view('posts.index')->with(['posts'=> $post->getPaginatebyLimit(5)]);
+        //変数'posts'としてposts.indexに渡す。'posts'にgetを使い、インスタンス化した$postを渡す。
     }
 }
