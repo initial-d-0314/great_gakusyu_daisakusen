@@ -18,4 +18,13 @@ class Post extends Model
         // updated_atで降順に並べたあと、limitで件数制限をかけてページネーション
         return $this->orderBy('updated_at','DESC')->paginate($limit_count);
     }
+    
+    
+    /*
+    *どの要素をfillで流し込んでもいいのかの一覧
+    */
+    protected $fillable = [
+        'title',
+        'body',
+    ];
 }

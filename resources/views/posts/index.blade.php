@@ -8,11 +8,11 @@
     </head>
     <body>
         <h1>Blog Name</h1>
-
-		<div class='titlelist'>
-			<p class='title_inlist'>Title</p>
-		</div>
-		<div class='posts'>
+    <a href='/posts/create'>新規投稿作成</a>
+        <div class='titlelist'>
+            <p class='title_inlist'>Title</p>
+        </div>
+        <div class='posts'>
             @foreach($posts as $post)
                 <div class='post'>
                     <h2 class='title'>
