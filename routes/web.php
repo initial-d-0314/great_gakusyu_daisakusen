@@ -13,6 +13,7 @@ use App\Http\Controllers\PostController; //PostControllerクラスをインポ�
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::post('/posts/',[PostController::Class,'store']);
+Route::get('/posts/create',[PostController::Class,'create']);
 Route::get('/',[PostController::class, 'index']);
 Route::get('/posts/{post}',[PostController::class ,'show']);
