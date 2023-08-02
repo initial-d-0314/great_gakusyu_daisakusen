@@ -72,7 +72,7 @@ class PostController extends Controller
     * @params Request,Post(空であるもの)
     * @return その投稿ページへのリダイレクト、DBへの登録(id連番で振る)
     */
-    public function update(Request $request,Post $post)
+    public function update(PostRequest $request,Post $post)
     {
         $input_post = $request['post'];
         $post->fill($input_post)->save();

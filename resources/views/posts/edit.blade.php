@@ -14,13 +14,30 @@
         @csrf
         @method('PUT')
         title:
-        <input type="text" name="post[title]" value="{{$post->title}}"/><br>
+        <!--エラーがある場合初期値を差し替える-->
+        @if($errors->any())
+        <input type="text" name="post[title]" value="{{old('post.title')}}"/>
+        @else
+        <input type="text" name="post[title]" value="{{$post->title}}"/>
+        @endif<br>
+        <!--エラーがある場合リストで全部見せる-->
+            @if($errors->has('post.title'))
+                @foreach($errors->get('post.title') as $message)
+                <li>{{$message}}</li>
+                @endforeach
+            @endif
         body:
-        <textarea name="post[body]">{{$post->body}}</textarea><br>
+        <textarea name="post[body]">@if($errors->any()){{old('post.body')}}@else{{$post->body}}@endif</textarea><br>
+            <!--エラーがある場合リストで全部見せる-->
+            @if($errors->has('post.body'))
+                @foreach($errors->get('post.body') as $message)
+                <li>{{$message}}</li>
+                @endforeach
+            @endif
         <input type="submit" value="編集確定"/>
         </form>
         <div class="footer">
-            <a href="/{{$post->id}}">戻る</a>
+            <a href="/posts/{{$post->id}}">戻る</a>
         </div>
     </body>
 </html>
