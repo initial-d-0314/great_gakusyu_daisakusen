@@ -54,5 +54,31 @@ class PostController extends Controller
         //saveした時点でidとか日時とかが割り振られている
         return redirect('/posts/'.$post->id);
     }
+    
+    /*
+    *特定IDのpostを編集画面に表示する
+    *@params Object Post // 引数の$postはid=1のPostインスタンス
+    *@return Reposnse post edit
+    */
+    public function edit(Post $post)
+    {
+        return view('posts.edit')->with(['post' => $post]);  
+        //'post'はbladeファイルで使う変数。中身は$postはidをアドレスで指定されているPostインスタンス。
+    }
+    
+    
+    /*
+    *ブログの投稿取得し、更新がある場合はDBに書き込む
+    * @params Request,Post(空であるもの)
+    * @return その投稿ページへのリダイレクト、DBへの登録(id連番で振る)
+    */
+    public function update(PostRequest $request,Post $post)
+    {
+        $input_post = $request['post'];
+        $post->fill($input_post)->save();
+        //今回は事前に$Postの中身が存在するのでその中身の変更だけにとどまる
+        //updateでなくsaveを利用すれば変更がない場合にDBにアクセスしないという利点がある
+        return redirect('/posts/'.$post->id);
+    }
 
 }
