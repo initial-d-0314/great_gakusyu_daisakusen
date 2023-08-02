@@ -16,8 +16,11 @@
             </div>
         </div>
         <p>投稿日時：{{$post->created_at}}、更新日時：{{$post->updated_at}}</p>
+        <div class="edit">
+            <a href="/posts/{{$post->id}}/edit">編集</a>
+        </div>
         <div class="footer">
-	        <a href="/">back</a>
+            <a href="/">back</a>
         </div>
     </body>
 </html>
