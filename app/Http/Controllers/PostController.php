@@ -80,5 +80,19 @@ class PostController extends Controller
         //updateでなくsaveを利用すれば変更がない場合にDBにアクセスしないという利点がある
         return redirect('/posts/'.$post->id);
     }
+    
+    /*
+    *ブログの投稿の削除フラグをDBに書き込む
+    * @params Post
+    * @return リダイレクト、DBへの削除フラグの登録
+    */
+    public function delete(Post $post)
+    {
+    $post->delete();
+    //deleteは発行されるSQL文がdelete文、つまり完全削除である
+    //modelクラス側にuse Illuminate\Database\Eloquent\SoftDeletes;を入れて
+    //use SoftDeletes;することでupdate文を発行するようになり、deleted_atに削除日時が入るようになる
+    return redirect('/');
+    }
 
 }
